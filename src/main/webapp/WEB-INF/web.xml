@@ -8,7 +8,7 @@
   
   <servlet>
     <servlet-name>hello</servlet-name>
-    <servlet-class>com.google.appengine.demos.helloxmpp.HelloXmpp</servlet-class>
+    <servlet-class>com.paulbutcher.HelloXmpp</servlet-class>
   </servlet>
 
   <servlet-mapping>

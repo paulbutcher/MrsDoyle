@@ -1,6 +1,6 @@
 // Copyright 2008 Google Inc. All rights reserved.
 
-package com.google.appengine.demos.helloxmpp;
+package com.paulbutcher;
 
 import com.google.appengine.api.xmpp.JID;
 import com.google.appengine.api.xmpp.Message;
