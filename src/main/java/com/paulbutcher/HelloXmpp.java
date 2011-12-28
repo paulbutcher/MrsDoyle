@@ -1,5 +1,3 @@
-// Copyright 2008 Google Inc. All rights reserved.
-
 package com.paulbutcher;
 
 import com.google.appengine.api.xmpp.JID;
@@ -30,17 +28,6 @@ public class HelloXmpp extends HttpServlet {
     this.xmppService = XMPPServiceFactory.getXMPPService();
   }
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws IOException {
-    Message message =new MessageBuilder()
-        .withMessageType(MessageType.CHAT)
-        .withFromJid(new JID(req.getParameter("from")))
-        .withRecipientJids(new JID(req.getParameter("to")))
-        .withBody(req.getParameter("body"))
-        .build();
-    processMessage(message, res);
-  }
-
   public void doPost(HttpServletRequest req, HttpServletResponse res)
       throws IOException {
     processMessage(xmppService.parseMessage(req), res);
@@ -52,15 +39,8 @@ public class HelloXmpp extends HttpServlet {
     String presenceString = presence.isAvailable() ? "" : "not ";
     SendResponse response = xmppService.sendMessage(
         new MessageBuilder().
-        withBody(message.getBody() + " (you are " + presenceString + "available)").
+        withBody(message.getBody() + " (you appear to be " + presenceString + "available)").
         withRecipientJids(fromId).
         build());
-
-    for (Map.Entry<JID, SendResponse.Status> entry :
-        response.getStatusMap().entrySet()) {
-      res.getWriter().println(entry.getKey() + "," + entry.getValue() + "<br>");
-    }
-
-    res.getWriter().println("processed");
   }
 }
