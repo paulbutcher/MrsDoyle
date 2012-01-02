@@ -3,7 +3,7 @@ package com.paulbutcher
 import com.google.appengine.api.xmpp.{MessageBuilder, XMPPServiceFactory}
 import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 
-class HelloXmpp extends HttpServlet {
+class MrsDoyle extends HttpServlet {
 
   val xmppService = XMPPServiceFactory.getXMPPService
 

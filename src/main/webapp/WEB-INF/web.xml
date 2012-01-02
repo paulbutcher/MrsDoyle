@@ -4,15 +4,15 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    version="2.5"> 
-  <display-name>HelloXmpp Java</display-name>
+  <display-name>Mrs Doyle Scala</display-name>
   
   <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>com.paulbutcher.HelloXmpp</servlet-class>
+    <servlet-name>mrsdoyle</servlet-name>
+    <servlet-class>com.paulbutcher.MrsDoyle</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
+    <servlet-name>mrsdoyle</servlet-name>
     <url-pattern>/_ah/xmpp/message/*</url-pattern>
   </servlet-mapping>
 
