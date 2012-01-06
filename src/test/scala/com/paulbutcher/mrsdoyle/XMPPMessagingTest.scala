@@ -7,7 +7,7 @@ import org.scalamock.{CallLogging, VerboseErrors}
 
 import com.google.appengine.api.xmpp.{JID, Message, MessageBuilder, XMPPService}
 
-class MessagingTest extends FunSuite with MockFactory with GeneratedMockFactory with VerboseErrors with CallLogging {
+class XMPPMessagingTest extends FunSuite with MockFactory with GeneratedMockFactory with VerboseErrors with CallLogging {
 
   test("send") {
     val x = mockObject(XMPP)
