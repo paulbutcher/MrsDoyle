@@ -8,8 +8,8 @@ object Messaging {
   def handle(req: HttpServletRequest)(handler: (Drinker, String) => Unit) {
     val m = XMPP.service.parseMessage(req)
     val from = m.getFromJid
-    Drinkers.add(from.toString)
-    handler(Drinker(from.toString), m.getBody)
+    val d = Drinkers.add(from.getId)
+    handler(d, m.getBody)
   }
   
   def send(to: Drinker, body: String) {

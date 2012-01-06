@@ -4,8 +4,10 @@ case class Drinker(id: String)
 
 object Drinkers {
 
-  def add(id: String) {
-    drinkers.add(Drinker(id))
+  def add(id: String): Drinker = {
+    val d = Drinker(id)
+    drinkers.add(d)
+    d
   }
   
   def get: Iterable[Drinker] = drinkers
