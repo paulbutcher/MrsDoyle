@@ -8,12 +8,11 @@
   
   <servlet>
     <servlet-name>mrsdoyle</servlet-name>
-    <servlet-class>com.paulbutcher.MrsDoyle</servlet-class>
+    <servlet-class>com.paulbutcher.mrsdoyle.MrsDoyle</servlet-class>
   </servlet>
-
+  
   <servlet-mapping>
     <servlet-name>mrsdoyle</servlet-name>
     <url-pattern>/_ah/xmpp/message/*</url-pattern>
   </servlet-mapping>
-
 </web-app>

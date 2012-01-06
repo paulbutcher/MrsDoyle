@@ -6,7 +6,7 @@ class MrsDoyle extends HttpServlet {
 
   override def doPost(req: HttpServletRequest, res: HttpServletResponse) {
     Messaging.handle(req) { (from, body) => 
-      Messaging.send(from, "You said: "+ body)
+      Messaging.send(from, "You said: \""+ body +"\" and these guys are here: "+ Drinkers.get.mkString(", "))
     }
   }
 }

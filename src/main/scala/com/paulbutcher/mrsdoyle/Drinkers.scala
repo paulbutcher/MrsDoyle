@@ -1,27 +1,16 @@
 package com.paulbutcher.mrsdoyle
 
-import scala.collection.JavaConverters._
-
-import com.google.appengine.api.datastore.{DatastoreServiceFactory, Entity, FetchOptions, KeyFactory, Query}
-import com.google.appengine.api.xmpp.JID
-import FetchOptions.Builder._
-
-case class Drinker(id: JID)
+case class Drinker(id: String)
 
 object Drinkers {
 
-  def add(id: JID) {
-    val d = new Entity("Drinker", key)
-    d.setProperty("id", id)
-    store.put(d)
+  def add(id: String) {
+    drinkers.add(Drinker(id))
   }
   
-  def get: Seq[Drinker] = {
-    val q = new Query("Drinkers", key)
-    val ds = store.prepare(q).asList(withLimit(99)).asScala
-    ds map { d => Drinker(d.getProperty("id").asInstanceOf[JID]) }
-  }
-  
-  lazy val key = KeyFactory.createKey("Drinker", "Drinkers")
-  lazy val store = DatastoreServiceFactory.getDatastoreService
+  def get: Iterable[Drinker] = drinkers
+
+  // Quick and dirty in-process implementation. Will break horribly if more than
+  // one instance is running
+  lazy val drinkers = collection.mutable.Set[Drinker]()
 }
