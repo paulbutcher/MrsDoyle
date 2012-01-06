@@ -14,7 +14,15 @@ object MrsDoyle extends Build {
         "org.scalamock" %% "scalamock-scalatest-support" % "2.2-SNAPSHOT"
       ),
       autoCompilerPlugins := true,
-      addCompilerPlugin("org.scalamock" %% "scalamock-compiler-plugin" % "2.2-SNAPSHOT")
+      addCompilerPlugin("org.scalamock" %% "scalamock-compiler-plugin" % "2.2-SNAPSHOT"),
+
+      unmanagedJars in Compile <++= AppengineKeys.libUserPath in Compile map { libUserPath =>
+      	val baseDirectories = libUserPath +++ (libUserPath / "orm")
+      	  (baseDirectories * "*.jar").classpath
+      	},
+      unmanagedJars in Compile <++= AppengineKeys.libPath in Compile map { libPath =>
+      	  ((libPath / "shared") ** "*.jar").classpath
+      	}
     )
 
   lazy val project = Project("mrsdoyle", file("."),
