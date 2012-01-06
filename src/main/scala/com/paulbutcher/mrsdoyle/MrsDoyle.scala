@@ -11,7 +11,7 @@ class MrsDoyle extends HttpServlet {
   def handle(m: IncomingMessage) {
     m match {
       case IncomingMessage(from, body) =>
-        Messaging.send(Drinkers.get, invitation.choose)
+        XMPPMessaging.send(Drinkers.get, invitation.choose)
     }
   }
 }

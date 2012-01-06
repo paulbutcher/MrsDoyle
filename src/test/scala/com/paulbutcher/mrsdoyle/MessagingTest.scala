@@ -29,6 +29,6 @@ class MessagingTest extends FunSuite with MockFactory with GeneratedMockFactory 
       s.expects.sendMessage(m)
     }
     
-    Messaging.send(to, "a test message")
+    XMPPMessaging.send(to, "a test message")
   }
 }

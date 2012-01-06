@@ -2,7 +2,7 @@ package com.paulbutcher.mrsdoyle
 
 import com.google.appengine.api.xmpp.{JID, MessageBuilder}
 
-object Messaging {
+object XMPPMessaging {
   
   def send(to: Iterable[Drinker], body: String) {
     val ids = to map (d => new JID(d.id))
