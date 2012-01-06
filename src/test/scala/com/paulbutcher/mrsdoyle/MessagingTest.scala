@@ -14,14 +14,16 @@ class MessagingTest extends FunSuite with MockFactory with GeneratedMockFactory 
     val s = mock[XMPPService]
     val b = mock[MessageBuilder]
     val m = mock[Message]
-    val to = new JID("id1")
+    val to = Seq(Drinker("id1"), Drinker("id2"), Drinker("id3"))
     
     x.expects.service returning s
     inSequence {
       b.expects.newInstance
       inAnyOrder {
         b.expects.withBody("a test message") returning b
-        b.expects.withRecipientJids(to) returning b
+        b.expects.withRecipientJids(where { ids: Array[JID] => 
+            ids map (_.getId) sameElements Seq("id1", "id2", "id3") 
+          }) returning b
       }
       b.expects.build returning m
       s.expects.sendMessage(m)
