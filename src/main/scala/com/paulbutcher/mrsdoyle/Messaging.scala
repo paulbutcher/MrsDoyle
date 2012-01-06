@@ -1,4 +1,4 @@
-package com.paulbutcher
+package com.paulbutcher.mrsdoyle
 
 import com.google.appengine.api.xmpp.{JID, MessageBuilder, XMPPServiceFactory}
 import javax.servlet.http.HttpServletRequest

@@ -1,4 +1,4 @@
-package com.paulbutcher
+package com.paulbutcher.mrsdoyle
 
 import org.scalatest.FunSuite
 import org.scalamock.generated.GeneratedMockFactory

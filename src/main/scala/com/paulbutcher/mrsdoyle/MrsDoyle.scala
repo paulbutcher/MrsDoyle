@@ -1,4 +1,4 @@
-package com.paulbutcher
+package com.paulbutcher.mrsdoyle
 
 import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 
