@@ -5,10 +5,8 @@ import javax.servlet.http.HttpServletRequest
 
 object Messaging {
 
-  val xmppService = XMPPServiceFactory.getXMPPService
-
   def handle(req: HttpServletRequest)(handler: (JID, String) => Unit) {
-    val m = xmppService.parseMessage(req)
+    val m = XMPP.service.parseMessage(req)
     handler(m.getFromJid, m.getBody)
   }
   
@@ -17,6 +15,11 @@ object Messaging {
   }
   
   def send(to: Seq[JID], body: String) {
-    xmppService.sendMessage(new MessageBuilder().withBody(body).withRecipientJids(to: _*).build)
+    XMPP.service.sendMessage(
+      new MessageBuilder().withBody(body).withRecipientJids(to: _*).build)
   }
+}
+
+object XMPP {
+  lazy val service = XMPPServiceFactory.getXMPPService 
 }
