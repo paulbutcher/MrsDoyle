@@ -7,12 +7,12 @@
   <display-name>Mrs Doyle Scala</display-name>
   
   <servlet>
-    <servlet-name>mrsdoyle</servlet-name>
-    <servlet-class>com.paulbutcher.mrsdoyle.MrsDoyle</servlet-class>
+    <servlet-name>incoming-message</servlet-name>
+    <servlet-class>com.paulbutcher.mrsdoyle.IncomingMessageServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>mrsdoyle</servlet-name>
+    <servlet-name>incoming-message</servlet-name>
     <url-pattern>/_ah/xmpp/message/*</url-pattern>
   </servlet-mapping>
 </web-app>

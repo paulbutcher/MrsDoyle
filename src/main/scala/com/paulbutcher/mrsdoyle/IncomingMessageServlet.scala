@@ -2,7 +2,7 @@ package com.paulbutcher.mrsdoyle
 
 import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 
-class MrsDoyle extends HttpServlet {
+class IncomingMessageServlet extends HttpServlet {
 
   override def doPost(req: HttpServletRequest, res: HttpServletResponse) {
     handle(IncomingMessage(req))
