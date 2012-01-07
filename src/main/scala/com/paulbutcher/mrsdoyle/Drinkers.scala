@@ -1,6 +1,10 @@
 package com.paulbutcher.mrsdoyle
 
-case class Drinker(id: String)
+case class Drinker(id: String) {
+  def wantsTea() {
+    Drinkers.setWantsTea(this)
+  }
+}
 
 object Drinkers {
 
@@ -12,8 +16,11 @@ object Drinkers {
   
   def allBut(exclude: Drinker): Iterable[Drinker] =
     drinkers filter (d => d.id != exclude)
+  
+  def setWantsTea(d: Drinker) {
+    drinkers += d
+  }
 
-  // Quick and dirty in-process implementation. Will break horribly if more than
-  // one instance is running
   lazy val drinkers = collection.mutable.Set[Drinker]()
+  lazy val wantsTea = collection.mutable.Set[Drinker]()
 }

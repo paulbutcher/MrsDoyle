@@ -36,6 +36,16 @@ object Utterances {
     "Now really, whatever does that mean?",
     "I'm afraid I'm just not familiar with this new slang you young people use.",
     "You always say that!")
+    
+  def greatNews = pickRandom(
+    "Ah, grand! I'll wait a couple of minutes and see if anyone else wants one", 
+    "Champion.", 
+    "You won't regret it!", 
+    "Wonderful!", 
+    "I'm so glad!", 
+    "Marvellous!", 
+    "Oh good, I do like a cup of tea!", 
+    "Fabulous!")
 
   def pickRandom(options: String*) = options(Random.nextInt(options.length)) 
 }

@@ -34,11 +34,29 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
         val messaging = mockObject(XMPPMessaging)
         val drinkers = mockObject(Drinkers)
 
+        drinkers.expects.setWantsTea(ted)
         drinkers.expects.allBut(ted) returning Seq(dougal, jack)
         messaging.expects.send(ted, "What a great idea")
         messaging.expects.send(Seq(dougal, jack), "Would you like to join us?")
         
         handle(IncomingMessage(ted, "Fancy a cuppa?"))
+        
+        assert(state === stateMakingTea)
+      }
+    }
+    
+    "in state making tea" should {
+      
+      "respond to a drinker saying yes" in {
+        state = stateMakingTea
+        
+        val messaging = mockObject(XMPPMessaging)
+        val drinkers = mockObject(Drinkers)
+
+        drinkers.expects.setWantsTea(dougal)
+        messaging.expects.send(dougal, "That's great news")
+        
+        handle(IncomingMessage(dougal, "Oh, yes please"))
         
         assert(state === stateMakingTea)
       }
@@ -51,5 +69,6 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
     utterances.expects.whatDidYouSay returning "Sorry, I didn't understand that" anyNumberOfTimes;
     utterances.expects.goodIdea returning "What a great idea" anyNumberOfTimes;
     utterances.expects.invitation returning "Would you like to join us?" anyNumberOfTimes;
+    utterances.expects.greatNews returning "That's great news" anyNumberOfTimes;
   }
 }
