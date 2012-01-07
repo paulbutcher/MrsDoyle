@@ -10,7 +10,8 @@ object Drinkers {
     d
   }
   
-  def get: Iterable[Drinker] = drinkers
+  def allBut(exclude: Drinker): Iterable[Drinker] =
+    drinkers filter (d => d.id != exclude)
 
   // Quick and dirty in-process implementation. Will break horribly if more than
   // one instance is running

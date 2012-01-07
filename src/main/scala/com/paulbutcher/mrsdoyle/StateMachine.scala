@@ -11,7 +11,7 @@ object StateMachine {
   val stateNormal: Handler = {
     case IncomingMessage(from, body) if wantsTea(body) =>
       XMPPMessaging.send(from, goodIdea)
-      XMPPMessaging.send(Drinkers.get, invitation)
+      XMPPMessaging.send(Drinkers.allBut(from), invitation)
       state = stateMakingTea
   }
   
