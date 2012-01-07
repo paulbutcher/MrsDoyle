@@ -27,6 +27,7 @@ object StateMachine {
       Messaging.send(maker, youreIt)
       Messaging.send(Drinkers.allBut(maker), willMake)
       Drinkers.resetWantsTea()
+      state = stateNormal
   }
   
   val dontUnderstand: Handler = {

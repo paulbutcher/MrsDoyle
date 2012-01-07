@@ -62,6 +62,23 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
         
         assert(state === stateMakingTea)
       }
+      
+      "select someone at random when time runs out" in {
+        state = stateMakingTea
+        
+        val messaging = mockObject(Messaging)
+        val drinkers = mockObject(Drinkers)
+        
+        drinkers.expects.chooseMaker returning dougal
+        drinkers.expects.allBut(dougal) returning Seq(ted, jack)
+        messaging.expects.send(dougal, "Well volunteered")
+        messaging.expects.send(Seq(ted, jack), " will make the tea")
+        drinkers.expects.resetWantsTea
+        
+        handle(MakeTea)
+        
+        assert(state === stateNormal)
+      }
     }
   }
   
@@ -72,5 +89,7 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
     utterances.expects.goodIdea returning "What a great idea" anyNumberOfTimes;
     utterances.expects.invitation returning "Would you like to join us?" anyNumberOfTimes;
     utterances.expects.greatNews returning "That's great news" anyNumberOfTimes;
+    utterances.expects.youreIt returning "Well volunteered" anyNumberOfTimes;
+    utterances.expects.willMake returning " will make the tea" anyNumberOfTimes;
   }
 }
