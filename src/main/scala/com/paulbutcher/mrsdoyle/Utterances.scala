@@ -2,16 +2,9 @@ package com.paulbutcher.mrsdoyle
 
 import scala.util.Random
 
-trait RandomUtterance {
+object Utterances {
   
-  def choose = options(Random.nextInt(options.length))
-
-  val options: IndexedSeq[String]
-}
-
-object invitation extends RandomUtterance {
-
-  val options = IndexedSeq(
+  def invitation = pickRandom(
     "Will you have a cup of tea?", 
     "Will you have a cup of tea father?", 
     "We were just about to have a cup of tea, will you join us?", 
@@ -22,18 +15,14 @@ object invitation extends RandomUtterance {
     "Tea for two, two for tea... will you join us?",
     "What would you say to a cup father?",
     "Fancy a cup o' the hot stuff?")
-}
-
-object goodIdea extends RandomUtterance {
-  val options = IndexedSeq(
+    
+  def goodIdea = pickRandom(
     "Fantastic idea, I'll see who else wants one and get back to you in a couple of minutes", 
     "I was just about to suggest the same thing. I'll see who else wants one", 
     "Coming right up... in a couple of minutes", 
     "You do have the best ideas, I'll see who else will join us")
-}
-
-object whatDidYouSay extends RandomUtterance {
-  val options = IndexedSeq(
+    
+  def whatDidYouSay = pickRandom(
     "I don't understand what you're saying...",
     "If it's not about tea, I'm afraid I'm not really interested...",
     "Pardon?",
@@ -47,4 +36,6 @@ object whatDidYouSay extends RandomUtterance {
     "Now really, whatever does that mean?",
     "I'm afraid I'm just not familiar with this new slang you young people use.",
     "You always say that!")
+
+  def pickRandom(options: String*) = options(Random.nextInt(options.length)) 
 }
