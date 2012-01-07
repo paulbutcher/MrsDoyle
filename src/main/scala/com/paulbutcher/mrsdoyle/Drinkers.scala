@@ -18,8 +18,14 @@ object Drinkers {
     drinkers filter (d => d.id != exclude)
   
   def setWantsTea(d: Drinker) {
-    drinkers += d
+    wantsTea += d
   }
+  
+  def resetWantsTea() {
+    wantsTea.clear()
+  }
+  
+  def chooseMaker: Drinker = Utils.pickRandom(wantsTea.toIndexedSeq)
 
   lazy val drinkers = collection.mutable.Set[Drinker]()
   lazy val wantsTea = collection.mutable.Set[Drinker]()

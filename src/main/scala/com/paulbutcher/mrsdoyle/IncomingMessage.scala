@@ -2,7 +2,7 @@ package com.paulbutcher.mrsdoyle
 
 import javax.servlet.http.HttpServletRequest
 
-case class IncomingMessage(from: Drinker, body: String)
+case class IncomingMessage(from: Drinker, body: String) extends Event
 
 object IncomingMessage {
   

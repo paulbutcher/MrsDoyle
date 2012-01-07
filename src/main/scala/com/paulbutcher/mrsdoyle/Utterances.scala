@@ -1,6 +1,6 @@
 package com.paulbutcher.mrsdoyle
 
-import scala.util.Random
+import Utils.pickRandom
 
 object Utterances {
   
@@ -46,6 +46,19 @@ object Utterances {
     "Marvellous!", 
     "Oh good, I do like a cup of tea!", 
     "Fabulous!")
-
-  def pickRandom(options: String*) = options(Random.nextInt(options.length)) 
+    
+  def youreIt = pickRandom(
+    "Well volunteered! The following other people want tea!",
+    "Be a love and put the kettle on would you?",
+    "You know what, I think it's your turn to make the tea now I think about it.",
+    "Polly put the kettle on, kettle on, kettle on. You are Polly in this game.",
+    "Why not stretch those weary legs and have a wander over to the kitchen. Say, while you're there....")
+    
+  def willMake = pickRandom(
+    " has been kind enough to make the tea, I'd do it myself only I don't have arms",
+    " has been kind enough to make the tea",
+    " kindly offered to make the tea",
+    " is about to selflessly put the kettle on",
+    " is today's lucky tea lady",
+    " will soon bring you a warm fuzzy feeling in a cup")
 }

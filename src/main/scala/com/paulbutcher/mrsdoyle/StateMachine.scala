@@ -4,7 +4,7 @@ import Utterances._
 
 object StateMachine {
 
-  type Handler = PartialFunction[IncomingMessage, Unit]
+  type Handler = PartialFunction[Event, Unit]
   
   def handle = state orElse dontUnderstand
   
@@ -20,11 +20,18 @@ object StateMachine {
     case IncomingMessage(from, body) if saysYes(body) =>
       from.wantsTea
       XMPPMessaging.send(from, greatNews)
+      
+    case MakeTea =>
+      val maker = Drinkers.chooseMaker
+      XMPPMessaging.send(maker, youreIt)
+      XMPPMessaging.send(Drinkers.allBut(maker), willMake)
+      Drinkers.resetWantsTea()
   }
   
   val dontUnderstand: Handler = {
     case IncomingMessage(from, _) =>
       XMPPMessaging.send(from, whatDidYouSay)
+    case _ =>
   }
   
   var state: Handler = stateNormal
