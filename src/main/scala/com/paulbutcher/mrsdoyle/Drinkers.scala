@@ -15,7 +15,7 @@ object Drinkers {
   }
   
   def allBut(exclude: Drinker): Iterable[Drinker] =
-    drinkers filter (d => d.id != exclude)
+    drinkers filter (_ != exclude)
   
   def setWantsTea(d: Drinker) {
     wantsTea += d
