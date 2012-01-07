@@ -20,7 +20,7 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
       "complain when it doesn't understand" in {
         state = stateNormal
 
-        val messaging = mockObject(XMPPMessaging)
+        val messaging = mockObject(Messaging)
         messaging.expects.send(ted, "Sorry, I didn't understand that")
         
         handle(IncomingMessage(ted, "The slithey toves did gyre, etc"))
@@ -31,7 +31,7 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
       "start making tea when asked to" in {
         state = stateNormal
 
-        val messaging = mockObject(XMPPMessaging)
+        val messaging = mockObject(Messaging)
         val drinkers = mockObject(Drinkers)
 
         drinkers.expects.setWantsTea(ted)
@@ -50,7 +50,7 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
       "respond to a drinker saying yes" in {
         state = stateMakingTea
         
-        val messaging = mockObject(XMPPMessaging)
+        val messaging = mockObject(Messaging)
         val drinkers = mockObject(Drinkers)
 
         drinkers.expects.setWantsTea(dougal)

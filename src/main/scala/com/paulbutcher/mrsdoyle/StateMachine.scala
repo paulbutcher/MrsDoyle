@@ -11,26 +11,26 @@ object StateMachine {
   val stateNormal: Handler = {
     case IncomingMessage(from, body) if wantsTea(body) =>
       from.wantsTea
-      XMPPMessaging.send(from, goodIdea)
-      XMPPMessaging.send(Drinkers.allBut(from), invitation)
+      Messaging.send(from, goodIdea)
+      Messaging.send(Drinkers.allBut(from), invitation)
       state = stateMakingTea
   }
   
   val stateMakingTea: Handler = {
     case IncomingMessage(from, body) if saysYes(body) =>
       from.wantsTea
-      XMPPMessaging.send(from, greatNews)
+      Messaging.send(from, greatNews)
       
     case MakeTea =>
       val maker = Drinkers.chooseMaker
-      XMPPMessaging.send(maker, youreIt)
-      XMPPMessaging.send(Drinkers.allBut(maker), willMake)
+      Messaging.send(maker, youreIt)
+      Messaging.send(Drinkers.allBut(maker), willMake)
       Drinkers.resetWantsTea()
   }
   
   val dontUnderstand: Handler = {
     case IncomingMessage(from, _) =>
-      XMPPMessaging.send(from, whatDidYouSay)
+      Messaging.send(from, whatDidYouSay)
     case _ =>
   }
   
