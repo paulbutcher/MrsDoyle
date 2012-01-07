@@ -9,4 +9,8 @@ object XMPPMessaging {
     XMPP.service.sendMessage(
       new MessageBuilder().withBody(body).withRecipientJids(ids.toSeq: _*).build)
   }
+  
+  def send(to: Drinker, body: String) {
+    send(Iterable(to), body)
+  }
 }

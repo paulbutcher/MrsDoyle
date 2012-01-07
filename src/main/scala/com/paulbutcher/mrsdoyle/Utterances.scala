@@ -31,3 +31,20 @@ object goodIdea extends RandomUtterance {
     "Coming right up... in a couple of minutes", 
     "You do have the best ideas, I'll see who else will join us")
 }
+
+object whatDidYouSay extends RandomUtterance {
+  val options = IndexedSeq(
+    "I don't understand what you're saying...",
+    "If it's not about tea, I'm afraid I'm not really interested...",
+    "Pardon?",
+    "Beg pardon?",
+    "Hm?",
+    "Umm.....",
+    "Pancakes.",
+    "I fail to see the relevance...",
+    "Is there something I can do for you?",
+    "Are you sure you're speaking English?",
+    "Now really, whatever does that mean?",
+    "I'm afraid I'm just not familiar with this new slang you young people use.",
+    "You always say that!")
+}
