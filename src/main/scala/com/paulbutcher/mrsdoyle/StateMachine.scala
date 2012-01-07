@@ -11,6 +11,7 @@ object StateMachine {
   val stateNormal: Handler = {
     case IncomingMessage(from, body) if wantsTea(body) =>
       from.wantsTea
+      Deferred.makeTeaIn(120)
       Messaging.send(from, goodIdea)
       Messaging.send(Drinkers.allBut(from), invitation)
       state = stateMakingTea

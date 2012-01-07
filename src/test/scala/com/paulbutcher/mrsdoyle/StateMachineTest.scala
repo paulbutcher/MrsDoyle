@@ -32,9 +32,11 @@ class StateMachineTest extends WordSpec with BeforeAndAfterEach with MockFactory
         state = stateNormal
 
         val messaging = mockObject(Messaging)
+        val deferred = mockObject(Deferred)
         val drinkers = mockObject(Drinkers)
 
         drinkers.expects.setWantsTea(ted)
+        deferred.expects.makeTeaIn(120)
         drinkers.expects.allBut(ted) returning Seq(dougal, jack)
         messaging.expects.send(ted, "What a great idea")
         messaging.expects.send(Seq(dougal, jack), "Would you like to join us?")

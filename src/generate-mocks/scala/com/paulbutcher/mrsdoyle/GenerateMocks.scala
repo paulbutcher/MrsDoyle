@@ -11,4 +11,5 @@ import com.google.appengine.api.xmpp.{Message, MessageBuilder, XMPPService}
 @mockObject(XMPP)
 @mockObject(Utterances)
 @mockObject(Drinkers)
+@mockObject(Deferred)
 class Dummy
