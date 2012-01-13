@@ -22,7 +22,7 @@ class MessagingTest extends FunSuite with MockFactory with GeneratedMockFactory 
       inAnyOrder {
         b.expects.withBody("a test message") returning b
         b.expects.withRecipientJids(where { ids: Array[JID] => 
-            ids map (_.getId) sameElements Seq("id1", "id2", "id3") 
+            (ids map (_.getId)) sameElements (to map (_.id))
           }) returning b
       }
       b.expects.build returning m
